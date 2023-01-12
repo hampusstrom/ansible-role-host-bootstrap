@@ -32,13 +32,13 @@ Since we require root, use this role in a playbook that has `become:yes` globall
 - hosts: my_hosts_with_no_python
   become: yes
   roles:
-    - role: hampusstrom.hampusstrom.host_bootstrap
+    - role: hampusstrom.host_bootstrap
 
 # OR
 
 - hosts: my_hosts_with_no_python
   roles:
-    - role: hampusstrom.hampusstrom.host_bootstrap
+    - role: hampusstrom.host_bootstrap
       become: yes
 ```
 
