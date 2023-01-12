@@ -1,0 +1,29 @@
+---
+# tasks file for ansible_host_bootstrap
+
+- name: "Detect OS"
+  ansible.builtin.script: files/scripts/detect-os.sh
+  register: detect_os
+
+- ansible.builtin.set_fact:
+    bootstrap_OS: "{{ detect_os.stdout | regex_replace('GNU/Linux ','',ignorecase=True) | trim | lower}}"
+
+- ansible.builtin.debug:
+    var: bootstrap_OS
+
+- ansible.builtin.set_fact:
+    bootstrap_distro: "{{ (bootstrap_OS | split(' '))[0]}}"
+    bootstrap_version: "{{ (bootstrap_OS | split(' '))[1]}}"
+
+- ansible.builtin.debug:
+    var: bootstrap_distro
+
+- ansible.builtin.debug:
+    var: bootstrap_version
+
+- name: "Include {{ bootstrap_distro }} {{ bootstrap_version }} vars."
+  ansible.builtin.include_vars:
+    file: "{{ bootstrap_distro }}-{{ bootstrap_version }}.yml"
+
+- ansible.builtin.include_tasks:
+    file: "{{ bootstrap_distro }}-{{ bootstrap_version }}.yml"
