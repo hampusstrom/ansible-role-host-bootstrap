@@ -55,7 +55,17 @@ N/A
 Example Playbook
 ----------------
 
+With sudo installed:
+```yaml
+---
+- hosts: my_hosts_with_no_python
+  become: true
+  gather_facts: false
+  roles:
+    - hampusstrom.host_bootstrap
+```
 
+Without sudo installed:
 ```yaml
 ---
 - hosts: my_hosts_with_no_python
@@ -65,7 +75,6 @@ Example Playbook
   gather_facts: false
   roles:
     - hampusstrom.host_bootstrap
-
 ```
 
 License
