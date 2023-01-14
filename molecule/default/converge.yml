@@ -3,6 +3,6 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: "Include hampusstrom.ansible_host_bootstrap"
+    - name: "Include hampusstrom.host_bootstrap"
       ansible.builtin.include_role:
-        name: "hampusstrom.ansible_host_bootstrap"
+        name: "hampusstrom.host_bootstrap"
