@@ -1,9 +1,11 @@
 ---
 
 - name: "Check if python is installed."
-  ansible.builtin.raw: "dpkg-query -W {{ bootstrap_python_pkg}}"
+  ansible.builtin.raw: "dpkg-query -W {{ bootstrap_python_pkg }}"
   register: __bootstrap_pkgs_installed
-  changed_when: false
+  #ignore_errors: true
+  failed_when: false
+  changed_when: __bootstrap_pkgs_installed.rc != 0
 
 - name: "Install python."
   ansible.builtin.raw: "apt update && apt install -y {{ bootstrap_python_pkg }}"
