@@ -1,5 +1,7 @@
 #!/bin/bash
-
+# Script stolen from stackexchange until i get the time to make something more robust myself.
+# https://unix.stackexchange.com/questions/6345/how-can-i-get-distribution-name-and-version-number-in-a-simple-shell-script
+# Credit to https://unix.stackexchange.com/users/3169/mikel
 if [ -f /etc/os-release ]; then
     # freedesktop.org and systemd
     . /etc/os-release
