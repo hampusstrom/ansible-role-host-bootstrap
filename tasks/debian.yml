@@ -1,5 +1,10 @@
 ---
 
+# This step can return a false positive.
+# If the packages have been previously installed but then remove through a simple "apt remove"
+# it will still succeed.
+# However if "apt purge" has been used, this will always return the right value.
+# Shouldn't be a problem all too often, but good to know until I can find a better way to determine the package install status.
 - name: "Check if python is installed."
   ansible.builtin.raw: "dpkg-query -W {{ bootstrap_python_pkg }}"
   register: __bootstrap_pkgs_installed
